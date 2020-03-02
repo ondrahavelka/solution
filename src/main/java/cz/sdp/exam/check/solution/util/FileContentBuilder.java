@@ -17,9 +17,9 @@ public class FileContentBuilder {
     @Value("${input.regex}")
     private String REGEX;
 
-    private static Pattern transactionPattern = Pattern.compile("^([a-zA-Z0-9 ,.\"]{0,200})$");
+    private static Pattern transactionPattern = Pattern.compile("^([a-zA-Z0-9 ,.\"]{1,200})$");
 
-    private static Pattern partnerPattern = Pattern.compile("^([a-zA-Z0-9 ,.\"]{0,30})$");
+    private static Pattern partnerPattern = Pattern.compile("^([a-zA-Z0-9 ,.\"]{1,30})$");
 
     public FileContent build(String fileLine) throws InvalidInputException {
         FileContent fileContent = new FileContent();
