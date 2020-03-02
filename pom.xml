@@ -8,7 +8,7 @@
 		<version>2.2.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>cz.sdm.exam.check</groupId>
+	<groupId>cz.sdp.exam.check</groupId>
 	<artifactId>solution</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>solution</name>

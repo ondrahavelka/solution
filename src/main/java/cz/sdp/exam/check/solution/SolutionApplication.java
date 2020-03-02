@@ -1,4 +1,4 @@
-package cz.sdm.exam.check.solution;
+package cz.sdp.exam.check.solution;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

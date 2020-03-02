@@ -1,7 +1,7 @@
-package cz.sdm.exam.check.solution;
+package cz.sdp.exam.check.solution;
 
-import cz.sdm.exam.check.solution.service.FileService;
-import cz.sdm.exam.check.solution.util.FileContentBuilder;
+import cz.sdp.exam.check.solution.service.FileService;
+import cz.sdp.exam.check.solution.util.FileContentBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
