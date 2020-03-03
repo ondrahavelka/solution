@@ -1,5 +1,6 @@
 package cz.sdp.exam.check.solution;
 
+import cz.sdp.exam.check.solution.exceptions.InitialLoadException;
 import cz.sdp.exam.check.solution.model.FileContent;
 import cz.sdp.exam.check.solution.service.FileService;
 import cz.sdp.exam.check.solution.util.CounterMap;
@@ -18,24 +19,33 @@ public class Solution implements CommandLineRunner {
     @Autowired
     private FileService fileService;
 
-    private CounterMap<FileContent, Integer> counterMap = new CounterMap<>();
+    private CounterMap<FileContent> counterMap = new CounterMap<>();
 
     @Override
     public void run(String... args) throws Exception {
+
         List<FileContent> allContent = fileService.parseArgumentsAndFindFiles(args);
         allContent.forEach(e -> counterMap.put(e));
-        processContent(allContent);
+        log.info(processContent(allContent));
 
     }
 
-    private void processContent(List<FileContent> content) {
+    public String solution(String location) throws InitialLoadException {
+        List<FileContent> allContent = fileService.parseArgumentsAndFindFiles(location);
+        allContent.forEach(e -> counterMap.put(e));
+        return processContent(allContent);
+    }
+
+    private String processContent(List<FileContent> content) {
         counterMap.keySet().forEach(companyKey -> counterMap.get(companyKey).sort(Comparator.comparing(FileContent::getLocalDateTime)));
-        print(content);
+        return print(content);
       }
 
-    private void print(List<FileContent> content){
-        storeToDb();
-        content.forEach(fContent -> log.info(fContent.getCompany() + "|" + (counterMap.getFormattedIndex(fContent)) + "|" + fContent.getProduct()));
+    private String print(List<FileContent> content){
+        StringBuilder sb = new StringBuilder(content.size() * 10);
+        content.forEach(fContent -> sb.append(fContent.getCompany() + "|" + (counterMap.getFormattedIndex(fContent)) + "|" + fContent.getProduct()).append(System.lineSeparator()));
+        //storeToDb();
+        return sb.toString();
     }
 
     private void storeToDb() {

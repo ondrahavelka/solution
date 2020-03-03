@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public final class CounterMap<E extends FileContent, V> extends HashMap<String, List<FileContent>> {
+public final class CounterMap<E extends FileContent> extends HashMap<String, List<FileContent>> {
 
     public void put(E key) {
         if (this.containsKey(key.getCompany())){
